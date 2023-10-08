@@ -1,0 +1,25 @@
+.user_header {
+    margin: 10px;
+    color: black;
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+}
+.username {
+    color: white;
+    border-color: white;
+}
+.box_login{
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 50%;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 10px 10px 10px #888888;
+}
+.layout_main{
+    text-align: -webkit-center;
+}
+.stack_01{
+    align-items: center;
+}
