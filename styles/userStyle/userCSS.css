@@ -17,9 +17,28 @@
     margin: 10px;
     box-shadow: 10px 10px 10px #888888;
 }
-.layout_main{
+.layout_member{
     text-align: -webkit-center;
 }
 .stack_01{
     align-items: center;
+}
+
+/* Full-width input fields */
+/* input[type=text], input[type=password] { */
+.input_user {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    height: 50px;
+  }
+
+.button_member{
+    width: 100px;
+    height: 40px;
+    border: solid black 1px;
+    border-radius: 5px;
 }
