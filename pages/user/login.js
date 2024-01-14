@@ -3,35 +3,45 @@ import UserComponent from "../../components/user/usercomponent";
 import { UserLogin } from "../../services/userservices/userservice";
 import { MemberContext } from "../../providers/membercontext";
 import { LayoutContext } from "../../providers/layoutcontext";
+import { PopupContext } from "../../providers/popupcontext";
 import Waitingsignal from "../../components/layouts/waitingsignal";
+import Alertpopup from "../../components/utils/alertpopup";
 
 const login = () => {
-    const {memberState,memberDispatch} = useContext(MemberContext)
-    const {layoutState,layoutDispatch} = useContext(LayoutContext)
+    const { memberState, memberDispatch } = useContext(MemberContext)
+    const { layoutState, layoutDispatch } = useContext(LayoutContext)
+    const { popupState, popupDispatch } = useContext(PopupContext)
 
-    const onLogon = async () =>{
-        layoutDispatch({type:'SET_DISPLAY',payload:{display:true}})
-        const data = await UserLogin({userId:'',username:memberState.userLogin.email,password:memberState.userLogin.password})
-        if(data){
-            localStorage.setItem('token',data.auth)
+    const onLogon = async () => {
+        layoutDispatch({ type: 'SET_DISPLAY', payload: { display: true } })
+        const data = await UserLogin({ userId: '', username: memberState.userLogin.email, password: memberState.userLogin.password })
+        if (data) {
+            await popupDispatch({ type: 'SET_DISPLAY', payload: { display: true, topic: 'แจ้งเตือน', body: 'เข้าสู่ระบบสำเร็จ', action: onClosePopup } })
+            localStorage.setItem('token', JSON.stringify(data.auth))
+        } else {
+            popupDispatch({ type: 'SET_DISPLAY', payload: { display: true, topic: 'แจ้งเตือน', body: 'เข้าสู่ระบบไม่สำเร็จ', action: onClosePopup } })
         }
-        alert(`${JSON.stringify(data)}`)
-        layoutDispatch({type:'SET_DISPLAY',payload:{display:false}})
+        layoutDispatch({ type: 'SET_DISPLAY', payload: { display: false } })
+    }
+
+    const onClosePopup = () => {
+        popupDispatch({ type: 'SET_DISPLAY', payload: { display: false, topic: '', body: 'test', action: null } })
     }
 
     return (
         <>
-        <Waitingsignal></Waitingsignal>
-        <div className="layout_member">
-            <div className="box_login">
-                    <UserComponent 
-                    topic='Login' 
-                    inputEmailDisplay='true'
-                    inputPasswordDisplay='true'
-                    onClickLogon= {()=>onLogon()}
+            <Waitingsignal></Waitingsignal>
+            <Alertpopup></Alertpopup>
+            <div className="layout_member">
+                <div className="box_login">
+                    <UserComponent
+                        topic='Login'
+                        inputEmailDisplay='true'
+                        inputPasswordDisplay='true'
+                        onClickLogon={() => onLogon()}
                     ></UserComponent>
                 </div>
-        </div>
+            </div>
         </>
     )
 }

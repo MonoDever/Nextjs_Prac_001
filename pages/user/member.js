@@ -1,7 +1,4 @@
 import { createContext, useEffect, useState, useContext } from 'react'
-import Userheader from '../../components/user/userheader'
-import Userbody from '../../components/user/userbody'
-import Userbottom from '../../components/user/userbottom'
 import { useRouter } from 'next/router'
 import Waitingsignal from '../../components/layouts/waitingsignal'
 import Popup from '../../components/utils/popup'
