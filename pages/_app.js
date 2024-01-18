@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import '../styles/userStyle/userCSS.css'
 import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import { popupReducer, PopupContext, initPopupState } from '../providers/popupcontext'
 import { memberReducer, MemberContext, initMemberState } from '../providers/membercontext'
 import { layoutReducer, LayoutContext, initLayoutState } from '../providers/layoutcontext'

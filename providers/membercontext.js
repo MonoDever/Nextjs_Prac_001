@@ -1,8 +1,9 @@
 import { createContext } from "react"
 
 const initMemberState = {
-    userLogin: {email:'',password:''},
+    userLogin: { email: '', password: '' },
     userRegister: {},
+    alertMessage: '',
     userStage: {
         headerText: 'test',
         body: { email: false, password: false, repeatPassword: false },
@@ -19,9 +20,13 @@ function memberReducer(state, action) {
     try {
         switch (action.type) {
             case 'SET_EMAIL':
-                return {...state,userLogin:{...state.userLogin,email:action.payload.email}}
+                return { ...state, userLogin: { ...state.userLogin, email: action.payload.email }, alertMessage:'' }
             case 'SET_PASSWORD':
-                return {...state,userLogin:{...state.userLogin,password:action.payload.password}}
+                return { ...state, userLogin: { ...state.userLogin, password: action.payload.password }, alertMessage:''  }
+            case 'SET_CONFIRMPASSWORD':
+                return { ...state, userLogin: { ...state.userLogin, confirmPassword: action.payload.confirmPassword }, alertMessage:''  }
+            case 'SET_ALERTMESSAGE':
+                return { ...state, alertMessage: action.payload.alertMessage }
             case 'login':
                 state = {
                     ...state, userStage: {

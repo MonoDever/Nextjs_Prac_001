@@ -15,15 +15,15 @@ export default function alertpopup(props) {
                 }}>
                     <div className="row" style={{ height: '15%', backgroundColor: 'lightblue', margin: '0px', borderRadius: '10px 10px 0px 0px' }}>
                         <div>
-                            <span style={{ fontSize: '16px', fontWeight: 'bold' }}>{popupState.topic}
+                            <span style={{ fontSize: '16px', fontWeight: 'bold', verticalAlign: '-webkit-baseline-middle' }}>
+                                <i class="bi bi-exclamation-triangle-fill" style={{ color: 'yellowgreen' }}></i>{popupState.topic}
                             </span>
                         </div>
                     </div>
                     <div className="row" style={{ height: '65%' }}>
-                        <div style={{ textAlign: 'center' }}>
-                            {popupState.body}
+                        <div style={{ alignItems:'center', display:'flex',justifyContent:'center' }}>
+                            <span style={{ verticalAlign: '-webkit-baseline-middle' }}>{popupState.body}</span>
                         </div>
-                        <i class="bi-alarm"></i>
                     </div>
                     <div className="row" style={{ height: '20%' }}>
                         <div style={{ textAlign: 'center' }}>
