@@ -39,10 +39,10 @@ export default function register() {
             params.password = sha256(user.password);
 
             const data = await UserSignup(params);
-            if (data) {
+            if (data.result && data.result == 'SUCCESS') {
                 popupDispatch({ type: 'SET_DISPLAY', payload: { display: true, topic: 'Alert', body: 'Register is success', action: onRegisterSuccess } })
             }else{
-                memberDispatch({ type: 'SET_ALERTMESSAGE', payload: { alertMessage: "เข้าสู่ระบบไม่สำเร็จ" } })
+                memberDispatch({ type: 'SET_ALERTMESSAGE', payload: { alertMessage: `เข้าสู่ระบบไม่สำเร็จ \r\n${data.errorMessage}` } })
             }
             layoutDispatch({ type: 'SET_DISPLAY', payload: { display: false } })
         }

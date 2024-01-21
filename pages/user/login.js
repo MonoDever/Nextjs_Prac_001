@@ -35,6 +35,10 @@ const login = () => {
         router.push('/user/register')
     }
 
+    const gotoForgotPasswordPage = () =>{
+        router.push('/user/verificationcode')
+    }
+
     return (
         <>
             <Waitingsignal></Waitingsignal>
@@ -47,6 +51,8 @@ const login = () => {
                         inputPasswordDisplay='true'
                         onClickLogon={() => onLogon()}
                         onGotoRegisterPage={() => gotoRegisterPage()}
+                        onGotoForgotPasswordPage={() => gotoForgotPasswordPage()}
+
                     ></UserComponent>
                 </div>
             </div>

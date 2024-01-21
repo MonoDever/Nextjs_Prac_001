@@ -5,11 +5,13 @@
     font-size: 20px;
     font-weight: bold;
 }
+
 .username {
     color: white;
     border-color: white;
 }
-.box_login{
+
+.box_login {
     border: 1px solid gray;
     border-radius: 5px;
     width: 50%;
@@ -17,10 +19,12 @@
     margin: 10px;
     box-shadow: 10px 10px 10px #888888;
 }
-.layout_member{
+
+.layout_member {
     text-align: -webkit-center;
 }
-.stack_01{
+
+.stack_01 {
     align-items: center;
 }
 
@@ -34,15 +38,20 @@
     border: none;
     background: #f1f1f1;
     height: 50px;
-  }
+}
 
-.button_member{
+.button_member {
     width: 100px;
     height: 40px;
     border: solid black 1px;
     border-radius: 5px;
 }
 
+.button_member:hover {
+    background-color: darkblue;
+    color: white;
+    font-weight: bold;
+}
 
 /* move */
 .layout_register {
@@ -70,7 +79,8 @@
     padding: 0px 0px 0px 1%;
     align-self: self-end;
 }
-.btn_end{
+
+.btn_end {
     text-align: end;
     margin: 0px;
     padding: 0px 1% 0px 0px;
@@ -82,7 +92,7 @@
     font-size: 12px
 }
 
-.btn_register{
+.btn_register {
     border: 0px;
     background-color: white;
     padding: 10px;
@@ -91,6 +101,7 @@
     font-weight: 200;
     font-size: 10px;
 }
+
 .btn_register:hover:enabled {
     background-color: #002a66;
     border: #002a66 solid;
@@ -124,7 +135,7 @@
     cursor: not-allowed;
 }
 
-.btn_forgotpassword{
+.btn_forgotpassword {
     border: 0px;
     background-color: white;
     padding: 10px;
@@ -133,6 +144,7 @@
     font-weight: 200;
     font-size: 10px;
 }
+
 .btn_forgotpassword:hover:enabled {
     background-color: #002a66;
     border: #002a66 solid;
@@ -183,7 +195,7 @@
 }
 
 /* Forgot password */
-.forgot_layout{
+.forgot_layout {
     border: 2px solid gray;
     border-radius: 10px;
     margin: 10px;
@@ -193,7 +205,7 @@
 }
 
 /* reset password */
-.reset_layout{
+.reset_layout {
     border: 2px solid gray;
     border-radius: 10px;
     margin: 10px;
@@ -203,11 +215,34 @@
 }
 
 /* userInformation */
-.userinformation_layout{
+.userinformation_layout {
     border: 2px solid gray;
     border-radius: 10px;
     margin: 10px;
     padding: 10px;
     max-width: 550px;
     text-align: start;
+}
+
+/* btn login */
+.div_btn_option{
+    justify-content: center;
+    align-self: center;
+}
+.btn_option {
+    color: black;
+}
+
+.btn_option:hover {
+    text-shadow: 1px 1px gray;
+    background-color: lightgrey;
+    border-radius: 5px;
+    padding: 0px 5px;
+}
+.btn_option:hover .icon_lr {
+    color: black;
+}
+
+.icon_lr {
+    color: lightgray
 }
