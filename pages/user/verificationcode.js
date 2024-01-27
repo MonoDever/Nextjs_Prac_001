@@ -4,10 +4,12 @@ import { MemberContext } from "../../providers/membercontext";
 import { useContext } from "react";
 import { ValidateEmail } from "../../common/functions/userfunction";
 import { SendMailForVerifyCode, ValidateVerifyCode } from "../../services/userservices/userservice";
-import { verify } from "crypto";
+import { PopupContext } from "../../providers/popupcontext";
+import Alertpopup from "../../components/layouts/alertpopup";
 export default function verificationcode() {
     const router = useRouter();
     const { memberState, memberDispatch } = useContext(MemberContext);
+    const { popupState, popupDispatch } = useContext(PopupContext)
 
     const gotoLoginPage = () => {
         router.push('/user/login')
@@ -26,11 +28,12 @@ export default function verificationcode() {
             return;
         }
 
-        let data = await ValidateVerifyCode({ email: user.email, verifyCode:verifycode})
-        if(data && data.result == 'success'){
+        let data = await ValidateVerifyCode({ email: user.email, verifyCode: verifycode })
+        if (data && data.result == 'success') {
             router.push('/user/forgotpassword')
-        }else{
-            memberDispatch({type: 'SET_VERIFYCODE', payload: {verifycode:''}})
+        } else {
+            memberDispatch({ type: 'SET_VERIFYCODE', payload: { verifycode: '' } })
+            popupDispatch({ type: 'SET_DISPLAY', payload: { display: true, topic: 'Alert', body: 'รหัสยืนยันไม่ถูกต้อง กรุณาตรวจสอบอีกครัง', action: onClosePopup } })
         }
     }
 
@@ -52,17 +55,24 @@ export default function verificationcode() {
         }
     }
 
+    const onClosePopup = () => {
+        popupDispatch({ type: 'SET_DISPLAY', payload: { display: false, topic: '', body: 'test', action: null } })
+    }
+
     return (
-        <div className="layout_member">
-            <div className="box_login">
-                <UserComponent
-                    topic='Verification code'
-                    inputEmailDisplay='true'
-                    onGotoLoginPage={() => gotoLoginPage()}
-                    onClickSendEmail={() => onSendEmail()}
-                    onClickVerifyCode={() => onVerifyCode()}
-                ></UserComponent>
+        <>
+        <Alertpopup></Alertpopup>
+            <div className="layout_member">
+                <div className="box_login">
+                    <UserComponent
+                        topic='Verification code'
+                        inputEmailDisplay='true'
+                        onGotoLoginPage={() => gotoLoginPage()}
+                        onClickSendEmail={() => onSendEmail()}
+                        onClickVerifyCode={() => onVerifyCode()}
+                    ></UserComponent>
+                </div>
             </div>
-        </div>
+        </>
     )
 }

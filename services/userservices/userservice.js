@@ -52,11 +52,19 @@ export const SendMailForVerifyCode = async (params) => {
 
     return response.data;
 }
-export const ValidateVerifyCode = async (params) =>{
+export const ValidateVerifyCode = async (params) => {
     const subPath = 'users/validateVerifyCode'
     const response = await httpClient.post(`${urlPath + subPath}`,
-    JSON.stringify(params),
-    { headers: { 'Content-Type': 'application/json' } });
+        JSON.stringify(params),
+        { headers: { 'Content-Type': 'application/json' } });
+
+    return response.data;
+}
+export const ChangePassword = async (params) => {
+    const subPath = 'auth/changePassword'
+    const response = await httpClient.post(`${urlPath + subPath}`,
+        JSON.stringify(params),
+        { headers: { 'Content-Type': 'application/json' } });
 
     return response.data;
 }

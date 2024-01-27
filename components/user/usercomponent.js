@@ -15,10 +15,13 @@ export default function UserComponent(props) {
         onGotoRegisterPage,
         onGotoForgotPasswordPage } = props;
     const { memberState, memberDispatch } = useContext(MemberContext);
-    const [codeCount,setCodeCount] = useState(0)
+    const [codeCount, setCodeCount] = useState(0)
 
     useEffect(() => {
-    })
+        if (memberState.userVerifyEmail.verifyCode.length == 0) {
+            setCodeCount(0)
+        }
+    }, [memberState.userVerifyEmail.verifyCode])
 
     const onBindingEmail = (e) => {
         const email = e.target.value;
@@ -35,10 +38,10 @@ export default function UserComponent(props) {
         memberDispatch({ type: 'SET_CONFIRMPASSWORD', payload: { confirmPassword: confirmPassword } })
     }
 
-    const onBindingVerifyCode = (e) =>{
+    const onBindingVerifyCode = (e) => {
         e.preventDefault()
         const code = e.target.value;
-        memberDispatch({type:'SET_VERIFYCODE',payload: { verifycode : code}})
+        memberDispatch({ type: 'SET_VERIFYCODE', payload: { verifycode: code } })
         setCodeCount(code.length)
     }
 
@@ -65,22 +68,28 @@ export default function UserComponent(props) {
 
                     <div style={{ textAlign: 'left', display: inputPasswordConfirmDisplay ? 'inline' : 'none' }}>
                         <label form="psw-repeat" ><b>Confirm {onClickForgotPassword ? 'New' : ''}Password</b></label>
-                        <input className='input_user' type="password" placeholder="Confirm Password" name="psw-repeat" id="psw-repeat" required onChange={(e) => { onBindingConfirmPassword(e) }} 
+                        <input className='input_user' type="password" placeholder="Confirm Password" name="psw-repeat" id="psw-repeat" required onChange={(e) => { onBindingConfirmPassword(e) }}
                         ></input>
                     </div>
 
                 </div>
-                
-                <div style={{display:memberState.alertMessage ? 'inline':'none'}}>
-                    <i><i class="bi bi-dash-circle-fill" style={{ color:'red'}}></i></i>
-                    <span style={{ textDecoration:'underline', color:'red'}}>{memberState.alertMessage}</span>
+
+                <div style={{ display: memberState.alertMessage ? 'inline' : 'none' }}>
+                    <i><i class="bi bi-dash-circle-fill" style={{ color: 'red' }}></i></i>
+                    <span style={{ textDecoration: 'underline', color: 'red' }}>{memberState.alertMessage}</span>
                 </div>
-                <br></br>
-                <div style={{ display: onClickVerifyCode ? 'inline' : 'none'}}>
-                    <span>Please check email : </span> <input placeholder="verifycode"  maxLength={6} onChange={(e) => onBindingVerifyCode(e)} style={{ border:'solid 1px black' }} value={memberState.userVerifyEmail.verifyCode} ></input>
+
+                <div className="col-sm-4" style={{ display: onClickSendEmail ? 'inline' : 'none' }}>
+                    <button className="button_member" onClick={() => onClickSendEmail()}>{memberState.userVerifyEmail.countSentEmail > 0 ? `Resend (${memberState.userVerifyEmail.countSentEmail})` : 'Sendmail'}</button>
+                    <br></br>
+                    <br></br>
+                </div>
+
+                <div style={{ display: onClickVerifyCode ? 'inline' : 'none' }}>
+                    <span>Please check email : </span> <input placeholder="verifycode" maxLength={6} onChange={(e) => onBindingVerifyCode(e)} style={{ border: 'solid 1px black' }} value={memberState.userVerifyEmail.verifyCode} ></input>
                 </div>
                 {/* {passwordinfomation} */}
-                <div style={{ textAlign: 'start',display: inputPasswordConfirmDisplay ? 'inline':'none' }}>
+                <div style={{ textAlign: 'start', display: inputPasswordConfirmDisplay ? 'inline' : 'none' }}>
                     <PasswordInformation></PasswordInformation>
                 </div>
                 {/* {passwordinfomation} */}
@@ -93,24 +102,21 @@ export default function UserComponent(props) {
             <div className="row">
                 <div className="col-sm-4 div_btn_option" style={{ display: onGotoLoginPage ? 'flex' : 'none' }}>
                     <button className="btn_option" onClick={onGotoLoginPage}>
-                    <i class="bi bi-caret-left icon_lr"></i>{`${' Login'}`}</button>
+                        <i class="bi bi-caret-left icon_lr"></i>{`${' Login'}`}</button>
                 </div>
                 <div className="col-sm-4 div_btn_option" style={{ display: onGotoRegisterPage ? 'flex' : 'none' }}>
                     <button className="btn_option" onClick={onGotoRegisterPage}>
-                    <i class="bi bi-caret-left"></i>{`${' register'}`}</button>
+                        <i class="bi bi-caret-left"></i>{`${' register'}`}</button>
                 </div>
-                
+
                 <div className="col-sm-4" style={{ display: onClickLogon ? 'inline' : 'none' }}>
                     <button className="button_member" onClick={() => onClickLogon()}>{'Logon'}</button>
                 </div>
                 <div className="col-sm-4" style={{ display: onClickRegister ? 'inline' : 'none' }}>
                     <button className="button_member" onClick={() => onClickRegister()}>{'Signup'}</button>
                 </div>
-                <div className="col-sm-4" style={{ display: onClickSendEmail ? 'inline' : 'none' }}>
-                    <button className="button_member" onClick={() => onClickSendEmail()}>{memberState.userVerifyEmail.countSentEmail > 0 ? `Resend (${memberState.userVerifyEmail.countSentEmail})`:'Sendmail'}</button>
-                </div>
                 <div className="col-sm-4" style={{ display: onClickForgotPassword ? 'inline' : 'none' }}>
-                    <button className="button_member" onClick={() => onClickForgotPassword()}>{'Sendmail'}</button>
+                    <button className="button_member" onClick={() => onClickForgotPassword()}>{'Confirm'}</button>
                 </div>
                 <div className="col-sm-4" style={{ display: codeCount == 6 ? 'inline' : 'none' }}>
                     <button className="button_member" onClick={() => onClickVerifyCode()}>{'Verifycode'}</button>
