@@ -26,7 +26,7 @@ export const UserLogin = async (params) => {
         })
     return response.data;
 }
-export const UserSignup = async (params) =>{
+export const UserSignup = async (params) => {
     const subPath = 'auth/register'
     const response = await httpClient.post(`${urlPath + subPath}`,
         JSON.stringify(params),
@@ -42,5 +42,21 @@ export const UserSignup = async (params) =>{
         .finally(() => {
             //always executed
         })
+    return response.data;
+}
+export const SendMailForVerifyCode = async (params) => {
+    const subPath = 'users/sendEmailForVerifyCode'
+    const response = await httpClient.post(`${urlPath + subPath}`,
+        JSON.stringify(params),
+        { headers: { 'Content-Type': 'application/json' } });
+
+    return response.data;
+}
+export const ValidateVerifyCode = async (params) =>{
+    const subPath = 'users/validateVerifyCode'
+    const response = await httpClient.post(`${urlPath + subPath}`,
+    JSON.stringify(params),
+    { headers: { 'Content-Type': 'application/json' } });
+
     return response.data;
 }

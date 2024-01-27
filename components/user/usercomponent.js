@@ -36,6 +36,7 @@ export default function UserComponent(props) {
     }
 
     const onBindingVerifyCode = (e) =>{
+        e.preventDefault()
         const code = e.target.value;
         memberDispatch({type:'SET_VERIFYCODE',payload: { verifycode : code}})
         setCodeCount(code.length)
@@ -64,7 +65,7 @@ export default function UserComponent(props) {
 
                     <div style={{ textAlign: 'left', display: inputPasswordConfirmDisplay ? 'inline' : 'none' }}>
                         <label form="psw-repeat" ><b>Confirm {onClickForgotPassword ? 'New' : ''}Password</b></label>
-                        <input className='input_user' type="password" placeholder="Confirm Password" name="psw-repeat" id="psw-repeat" required onChange={(e) => { onBindingConfirmPassword(e) }}
+                        <input className='input_user' type="password" placeholder="Confirm Password" name="psw-repeat" id="psw-repeat" required onChange={(e) => { onBindingConfirmPassword(e) }} 
                         ></input>
                     </div>
 
@@ -76,7 +77,7 @@ export default function UserComponent(props) {
                 </div>
                 <br></br>
                 <div style={{ display: onClickVerifyCode ? 'inline' : 'none'}}>
-                    <span>Please check email : </span> <input placeholder="verifycode"  maxLength={6} onChange={(e) => onBindingVerifyCode(e)} style={{ border:'solid 1px black' }}></input>
+                    <span>Please check email : </span> <input placeholder="verifycode"  maxLength={6} onChange={(e) => onBindingVerifyCode(e)} style={{ border:'solid 1px black' }} value={memberState.userVerifyEmail.verifyCode} ></input>
                 </div>
                 {/* {passwordinfomation} */}
                 <div style={{ textAlign: 'start',display: inputPasswordConfirmDisplay ? 'inline':'none' }}>
