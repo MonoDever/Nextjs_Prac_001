@@ -1,8 +1,16 @@
+html {
+    font-size: calc(60% + 0.8vmin);
+}
+
+img{
+    width: 30rem;
+}
+
 .user_header {
-    margin: 10px;
+    margin: 1rem;
     color: black;
     text-align: left;
-    font-size: 20px;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 
@@ -14,9 +22,9 @@
 .box_login {
     border: 1px solid gray;
     border-radius: 5px;
-    width: 50%;
-    padding: 10px;
-    margin: 10px;
+    width: 22.5rem;
+    padding: 1rem;
+    margin: 1rem;
     box-shadow: 10px 10px 10px #888888;
 }
 
@@ -37,12 +45,13 @@
     display: inline-block;
     border: none;
     background: #f1f1f1;
-    height: 50px;
+    height: 3.125rem;
+    font-size: 1rem;
 }
 
 .button_member {
-    width: 100px;
-    height: 40px;
+    width: 6.25rem;
+    height: 2.5rem;
     border: solid black 1px;
     border-radius: 5px;
 }
@@ -225,8 +234,12 @@
 }
 
 /* btn login */
-.div_btn_option{
-    justify-content: center;
+.div_btn_option {
+    justify-content: start;
+    align-self: center;
+}
+.div_btn_option_right {
+    justify-content: end;
     align-self: center;
 }
 .btn_option {
@@ -239,6 +252,7 @@
     border-radius: 5px;
     padding: 0px 5px;
 }
+
 .btn_option:hover .icon_lr {
     color: black;
 }

@@ -100,34 +100,38 @@ export default function UserComponent(props) {
             {/* bottom */}
             <br></br>
             <div className="row">
-                <div className="col-sm-4 div_btn_option" style={{ display: onGotoLoginPage ? 'flex' : 'none' }}>
+                <div className="col" style={{ display: onClickLogon ? 'inline' : 'none' }}>
+                    <button className="button_member" onClick={() => onClickLogon()}>{'Logon'}</button>
+                </div>
+                <div className="col" style={{ display: onClickRegister ? 'inline' : 'none' }}>
+                    <button className="button_member" onClick={() => onClickRegister()}>{'Signup'}</button>
+                </div>
+                <div className="col" style={{ display: onClickForgotPassword ? 'inline' : 'none' }}>
+                    <button className="button_member" onClick={() => onClickForgotPassword()}>{'Confirm'}</button>
+                </div>
+                <div className="col" style={{ display: codeCount == 6 ? 'inline' : 'none' }}>
+                    <button className="button_member" onClick={() => onClickVerifyCode()}>{'Verifycode'}</button>
+                </div>
+                <br></br>
+                <br></br>
+            </div>
+            {/* endbottom */}
+            {/* sub bottom */}
+            <div className="row">
+            <div className="col-6 div_btn_option" style={{ display: onGotoLoginPage ? 'flex' : 'none' }}>
                     <button className="btn_option" onClick={onGotoLoginPage}>
                         <i class="bi bi-caret-left icon_lr"></i>{`${' Login'}`}</button>
                 </div>
-                <div className="col-sm-4 div_btn_option" style={{ display: onGotoRegisterPage ? 'flex' : 'none' }}>
+                <div className="col-6 div_btn_option" style={{ display: onGotoRegisterPage ? 'flex' : 'none' }}>
                     <button className="btn_option" onClick={onGotoRegisterPage}>
                         <i class="bi bi-caret-left"></i>{`${' register'}`}</button>
                 </div>
-
-                <div className="col-sm-4" style={{ display: onClickLogon ? 'inline' : 'none' }}>
-                    <button className="button_member" onClick={() => onClickLogon()}>{'Logon'}</button>
-                </div>
-                <div className="col-sm-4" style={{ display: onClickRegister ? 'inline' : 'none' }}>
-                    <button className="button_member" onClick={() => onClickRegister()}>{'Signup'}</button>
-                </div>
-                <div className="col-sm-4" style={{ display: onClickForgotPassword ? 'inline' : 'none' }}>
-                    <button className="button_member" onClick={() => onClickForgotPassword()}>{'Confirm'}</button>
-                </div>
-                <div className="col-sm-4" style={{ display: codeCount == 6 ? 'inline' : 'none' }}>
-                    <button className="button_member" onClick={() => onClickVerifyCode()}>{'Verifycode'}</button>
-                </div>
-
-                <div className="col-sm-4 div_btn_option" style={{ display: onGotoForgotPasswordPage ? 'flex' : 'none' }}>
+                <div className="col-6 div_btn_option_right" style={{ display: onGotoForgotPasswordPage ? 'flex' : 'none' }}>
                     <button className="btn_option" onClick={() => onGotoForgotPasswordPage()}>
                         {`${'forgot password '}`}<i class="bi bi-caret-right"></i></button>
                 </div>
             </div>
-            {/* endbottom */}
+            {/* end sub bottom */}
         </>
     )
 }
