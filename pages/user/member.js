@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 import Waitingsignal from '../../components/layouts/waitingsignal'
-import Popup from '../../components/utils/popup'
+import Alertpopup from '../../components/layouts/alertpopup'
 import { MemberContext } from '../../providers/membercontext'
 import UserComponent from '../../components/user/usercomponent'
 
@@ -51,7 +51,7 @@ export default function member() {
     return (
         <UserContext.Provider value={{ userLogin, setUserLogin }}>
             <Waitingsignal inline={displayState}></Waitingsignal>
-            <Popup></Popup>
+            <Alertpopup></Alertpopup>
             <div className="layout_member" >
                 <div className="box_login">
                     <UserComponent></UserComponent>
