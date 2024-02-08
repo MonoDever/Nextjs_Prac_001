@@ -1,0 +1,29 @@
+.main-content-info{
+    background-color: white;
+    margin-left: 16%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    width: 82%;
+    height: 100%;
+    padding: 10px;
+}
+.grid-content-info{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    column-gap: 10px;
+    row-gap: 20px;
+}
+
+.label-info{
+    padding: 8px;
+}
+
+.input-info{
+    padding: 8px;
+    display: block;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+}

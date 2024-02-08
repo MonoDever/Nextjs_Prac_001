@@ -2,7 +2,7 @@ html {
     font-size: calc(60% + 0.8vmin);
 }
 
-img{
+img {
     width: 30rem;
 }
 
@@ -238,10 +238,12 @@ img{
     justify-content: start;
     align-self: center;
 }
+
 .div_btn_option_right {
     justify-content: end;
     align-self: center;
 }
+
 .btn_option {
     color: black;
 }

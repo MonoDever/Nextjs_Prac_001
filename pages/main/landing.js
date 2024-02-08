@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
+import {v1 as uuidv1} from "uuid"
 
 export default function landing() {
     const [selectedFile, setSelectedFile] = useState(null)
@@ -82,6 +83,10 @@ export default function landing() {
         return theBlob;
       }
 
+    const genUUIDv1 = () => {
+        alert(uuidv1());
+    }
+
     return (
         <>
             <h1>Wellcome</h1>
@@ -91,6 +96,8 @@ export default function landing() {
             <input type="file" accept=".pdf" onChange={handleChange} />
             <br></br>
             <button onClick={() => testRawPDF()}>test</button>
+            <br></br>
+            <button onClick={() => genUUIDv1()}>genuuidv1</button>
         </>
     )
 }

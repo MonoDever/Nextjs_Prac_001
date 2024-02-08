@@ -1,0 +1,129 @@
+/* fontsize */
+.is-3{
+    
+    font-size: 1.5rem;
+}
+.is-1 {
+    font-size: 1rem;
+}
+
+.is-2 {
+    font-size: .75rem;
+}
+/* topbar */
+.top-header {
+    background-color: darkslategray;
+    padding: 5px;
+    box-shadow: 0px 10px 8px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+}
+.top-text {
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0px 5px;
+}
+.top-menu {
+    color: black;
+}
+.top-left-header{
+    width: 50%;
+    text-align: start;
+}
+.top-right-header {
+   width: 50%;
+   text-align: end;
+}
+.top-left-sub-header{
+    display:inline-flex
+}
+.top-right-sub-header{
+    display:inline-flex
+}
+.top-mini-box{
+    padding: 5px;
+}
+.a-margin-top{
+    margin-top: 10px;
+    color: #ededed;
+}
+.h-margin-top{
+    margin-top: 15px;
+    color: #ededed;
+}
+.i-margin-top{
+    margin-top: 5px;
+    color: #ededed;
+}
+
+
+/* Style the active class, and buttons on mouse-over */
+.active,
+.sub-menu:hover {
+    background-color: #ededed;
+}
+
+/* appNav */
+.appNav {
+    position:fixed;
+    background-color: white;
+    width: 14%;
+    height: 999px;
+    /* top: 0;
+    left: 0;
+    bottom: 0; */
+    border: 1px solid #ededed;
+    overflow: hidden;
+}
+.appNav-leftbar-banner {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border: 1px solid #ededed;
+}
+.title {}
+.subtitle {}
+.flex-with {
+    width: 50%;;
+}
+.appNav-img-side-bar {
+    width: 50px;
+    height: 50px;
+    margin-right: 1rem;
+}
+.side-bar {
+    margin: 20px 0px;
+}
+.sub-menu {
+    display: block;
+    padding: 5px 16px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    color: #4a4a4a;
+    cursor: pointer;
+}
+
+.w3-show{
+    display: block!important;
+}
+
+.w3-hide{
+    display: none ;
+}
+
+.rotate-180{
+    transform: rotate(180deg);
+}
+.manu-btn{
+    display:flex;
+}

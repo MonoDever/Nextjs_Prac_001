@@ -1,5 +1,7 @@
 import '../styles/globals.css'
 import '../styles/userStyle/userCSS.css'
+import '../styles/layoutStyle/layoutCSS.css'
+import '../styles/userInfoStyle/userinfoCSS.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import { popupReducer, PopupContext, initPopupState } from '../providers/popupcontext'
