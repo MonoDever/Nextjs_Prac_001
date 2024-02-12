@@ -25,6 +25,8 @@ const login = () => {
             popupDispatch({ type: 'SET_DISPLAY', payload: { display: true, topic: 'แจ้งเตือน', body: 'เข้าสู่ระบบไม่สำเร็จ', action: onClosePopup } })
         }
         layoutDispatch({ type: 'SET_DISPLAY', payload: { display: false } })
+
+        router.push('/userinformation/userinfo')
     }
 
     const onClosePopup = () => {

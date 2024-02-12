@@ -43,8 +43,8 @@ export default function mainnavbar(){
                 <div id='sideBAR' className='side-bar' >
                     <div className="manu-btn" onClick={() => myFunction('Demo1','Arrow1')}>
                         <button className="title is-6 dropdown-manu"
-                            ><i class="bi bi-person-lines-fill"></i> Profile    </button>
-                        <div id="Arrow1" className=""><i class="bi bi-caret-down arrow"></i></div>
+                            ><i className="bi bi-person-lines-fill"></i> Profile    </button>
+                        <div id="Arrow1" className=""><i className="bi bi-caret-down arrow"></i></div>
                     </div>
 
                     <div id='Demo1' className="w3-hide">

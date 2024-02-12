@@ -12,7 +12,8 @@ export const UserLogin = async (params) => {
     // return jsonResponse;
     const response = await httpClient.post(`${urlPath + subPath}`,
         JSON.stringify(params),
-        { headers: { 'Content-Type': 'application/json' } })
+        // { headers: { 'Content-Type': 'application/json' } }
+    )
         .then((res) => {
             console.log(res)
             return res;
@@ -30,7 +31,8 @@ export const UserSignup = async (params) => {
     const subPath = 'auth/register'
     const response = await httpClient.post(`${urlPath + subPath}`,
         JSON.stringify(params),
-        { headers: { 'Content-Type': 'application/json' } })
+        // { headers: { 'Content-Type': 'application/json' } }
+    )
         .then((res) => {
             console.log(res)
             return res;
@@ -48,7 +50,8 @@ export const SendMailForVerifyCode = async (params) => {
     const subPath = 'users/sendEmailForVerifyCode'
     const response = await httpClient.post(`${urlPath + subPath}`,
         JSON.stringify(params),
-        { headers: { 'Content-Type': 'application/json' } });
+        // { headers: { 'Content-Type': 'application/json' } }
+    );
 
     return response.data;
 }
@@ -56,7 +59,8 @@ export const ValidateVerifyCode = async (params) => {
     const subPath = 'users/validateVerifyCode'
     const response = await httpClient.post(`${urlPath + subPath}`,
         JSON.stringify(params),
-        { headers: { 'Content-Type': 'application/json' } });
+        // { headers: { 'Content-Type': 'application/json' } }
+    );
 
     return response.data;
 }
@@ -64,7 +68,22 @@ export const ChangePassword = async (params) => {
     const subPath = 'auth/changePassword'
     const response = await httpClient.post(`${urlPath + subPath}`,
         JSON.stringify(params),
-        { headers: { 'Content-Type': 'application/json' } });
+        // { headers: { 'Content-Type': 'application/json' } }
+    );
+
+    return response.data;
+}
+
+export const GetUserDirectory = async () => {
+    const subPath = 'users/getUserDirectory'
+    const response = await httpClient.get(`${urlPath + subPath}`)
+
+    return response.data;
+}
+
+export const UpdateUserDirectory = async (params) => {
+    const subPath = 'users/updateUserDirectory'
+    const response = await httpClient.patch(`${urlPath + subPath}`,JSON.stringify(params))
 
     return response.data;
 }

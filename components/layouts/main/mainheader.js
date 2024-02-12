@@ -1,5 +1,12 @@
 
+import { useRouter } from "next/router"
+
 export default function mainheader(){
+    const router = useRouter();
+
+    const gotoLogin = async () =>{
+        router.push('/user/login')
+    }
 
     return(
         <>
@@ -20,13 +27,13 @@ export default function mainheader(){
                 <div className="top-right-header">
                     <div className="top-right-sub-header">
                         <div className="top-mini-box i-margin-top">
-                            <i class="bi bi-person-fill-up is-3"> </i>
+                            <i className="bi bi-person-fill-up is-3"> </i>
                         </div>
                         <div className="top-mini-box">
                             <h6 className="h-margin-top">firstname lastname</h6>
                         </div>
                         <div className="top-mini-box i-margin-top">
-                            <i class="bi bi-box-arrow-right is-3"></i>
+                            <i className="bi bi-box-arrow-right is-3" onClick={gotoLogin}></i>
                         </div>
                     </div>
                 </div>

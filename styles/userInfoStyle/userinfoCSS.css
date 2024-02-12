@@ -1,4 +1,4 @@
-.main-content-info{
+.main-content-info {
     background-color: white;
     margin-left: 16%;
     margin-top: 10px;
@@ -9,21 +9,73 @@
     height: 100%;
     padding: 10px;
 }
-.grid-content-info{
+
+.grid-content-info {
     display: grid;
     grid-template-columns: 1fr 5fr;
     column-gap: 10px;
     row-gap: 20px;
 }
 
-.label-info{
+.label-info {
     padding: 8px;
 }
 
-.input-info{
+.input-info {
     padding: 8px;
     display: block;
     border: none;
     border-bottom: 1px solid #ccc;
     width: 100%;
+}
+
+.grid-btn-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    margin-top: 20px;
+
+}
+
+.div-btn-left {
+    justify-items: end;
+    display: grid;
+}
+
+.btn-border-red {
+    border: 1px solid lightpink;
+    border-radius: 8px;
+    width: 80px;
+    padding: 8px 0px;
+}
+
+.btn-border-red:hover:enabled {
+    background-color: lightpink;
+    font-weight: 800;
+}
+
+.div-btn-right {
+    justify-items: end;
+    display: grid;
+}
+
+.btn-border-blue {
+    border: 1px solid lightblue;
+    border-radius: 8px;
+    width: 80px;
+    padding: 8px 0px;
+}
+
+.btn-border-blue:hover:enabled {
+    background-color: lightblue;
+    font-weight: 800;
+}
+
+.btn-border-blue:disabled {
+    border: 1px solid lightgray;
+    background-color: lightgrey;
+    color: darkslategray;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: not-allowed;
 }
