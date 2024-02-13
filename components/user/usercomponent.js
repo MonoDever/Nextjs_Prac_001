@@ -74,28 +74,60 @@ export default function UserComponent(props) {
 
                 </div>
 
-                <div style={{ display: memberState.alertMessage ? 'inline' : 'none' }}>
-                    <i><i class="bi bi-dash-circle-fill" style={{ color: 'red' }}></i></i>
-                    <span style={{ textDecoration: 'underline', color: 'red' }}>{memberState.alertMessage}</span>
-                </div>
-
-                <div className="col-sm-4" style={{ display: onClickSendEmail ? 'inline' : 'none' }}>
-                    <button className="button_member" onClick={() => onClickSendEmail()}>{memberState.userVerifyEmail.countSentEmail > 0 ? `Resend (${memberState.userVerifyEmail.countSentEmail})` : 'Sendmail'}</button>
-                    <br></br>
-                    <br></br>
-                </div>
-
-                <div style={{ display: onClickVerifyCode ? 'inline' : 'none' }}>
-                    <span>Please check email : </span> <input placeholder="verifycode" maxLength={6} onChange={(e) => onBindingVerifyCode(e)} style={{ border: 'solid 1px black' }} value={memberState.userVerifyEmail.verifyCode} ></input>
-                </div>
                 {/* {passwordinfomation} */}
                 <div style={{ textAlign: 'start', display: inputPasswordConfirmDisplay ? 'inline' : 'none' }}>
                     <PasswordInformation></PasswordInformation>
+                    <br></br>
                 </div>
                 {/* {passwordinfomation} */}
 
             </div>
             {/* endbody */}
+
+            {/* send mail*/}
+            
+            <div className="col-sm-4" style={{ display: onClickSendEmail ? 'flex' : 'none' }}>
+                <button className="button_member" onClick={() => onClickSendEmail()}>{memberState.userVerifyEmail.countSentEmail > 0 ? `Resend (${memberState.userVerifyEmail.countSentEmail})` : 'Sendmail'}</button>
+                <br></br>
+            </div>
+
+            <div className="div-verifycode" style={{ display: onClickVerifyCode ? 'flex' : 'none' }}>
+                <div className="row" >
+                    <div className="col-7">
+                        <label>Please check email : </label>
+                    </div>
+                    <div className="col-5">
+                        <input className="input-verifycode" placeholder="verifycode" maxLength={6} onChange={(e) => onBindingVerifyCode(e)} style={{ border: 'solid 1px black' }} value={memberState.userVerifyEmail.verifyCode} ></input>
+                    </div>
+                </div>
+                <br></br>
+            </div>
+
+            <div style={{ display: memberState.alertMessage ? 'inline' : 'none' }}>
+                <i><i className="bi bi-dash-circle-fill" style={{ color: 'red' }}></i></i>
+                <span style={{ textDecoration: 'underline', color: 'red' }}>{memberState.alertMessage}</span>
+            </div>
+
+            {/* end send mail */}
+
+            {/* pre bottom */}
+            <div className="container">
+                <div className="row">
+                    <div className="col-6 div_btn_option" style={{ display: onGotoLoginPage ? 'flex' : 'none' }}>
+                        <button className="btn_option" onClick={onGotoLoginPage}>
+                            {`${' Login'}`}</button>
+                    </div>
+                    <div className="col-6 div_btn_option" style={{ display: onGotoRegisterPage ? 'flex' : 'none' }}>
+                        <button className="btn_option" onClick={onGotoRegisterPage}>
+                            {`${' register'}`}</button>
+                    </div>
+                    <div className="col-6 div_btn_option_right" style={{ display: onGotoForgotPasswordPage ? 'flex' : 'none' }}>
+                        <button className="btn_option" onClick={() => onGotoForgotPasswordPage()}>
+                            {`${'forgot password '}`}</button>
+                    </div>
+                </div>
+            </div>
+            {/* end pre bottom */}
 
             {/* bottom */}
             <br></br>
@@ -116,22 +148,6 @@ export default function UserComponent(props) {
                 <br></br>
             </div>
             {/* endbottom */}
-            {/* sub bottom */}
-            <div className="row">
-            <div className="col-6 div_btn_option" style={{ display: onGotoLoginPage ? 'flex' : 'none' }}>
-                    <button className="btn_option" onClick={onGotoLoginPage}>
-                        <i class="bi bi-caret-left icon_lr"></i>{`${' Login'}`}</button>
-                </div>
-                <div className="col-6 div_btn_option" style={{ display: onGotoRegisterPage ? 'flex' : 'none' }}>
-                    <button className="btn_option" onClick={onGotoRegisterPage}>
-                        <i class="bi bi-caret-left"></i>{`${' register'}`}</button>
-                </div>
-                <div className="col-6 div_btn_option_right" style={{ display: onGotoForgotPasswordPage ? 'flex' : 'none' }}>
-                    <button className="btn_option" onClick={() => onGotoForgotPasswordPage()}>
-                        {`${'forgot password '}`}<i class="bi bi-caret-right"></i></button>
-                </div>
-            </div>
-            {/* end sub bottom */}
         </>
     )
 }

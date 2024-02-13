@@ -16,7 +16,7 @@ export default function alertpopup(props) {
                     <div className="row" style={{ height: '15%', backgroundColor: 'lightblue', margin: '0px', borderRadius: '10px 10px 0px 0px' }}>
                         <div>
                             <span style={{ fontSize: '16px', fontWeight: 'bold', verticalAlign: '-webkit-baseline-middle' }}>
-                                <i class="bi bi-exclamation-triangle-fill" style={{ color: 'yellowgreen' }}></i>{popupState.topic}
+                                <i className="bi bi-exclamation-triangle-fill" style={{ color: 'yellowgreen' }}></i>{popupState.topic}
                             </span>
                         </div>
                     </div>

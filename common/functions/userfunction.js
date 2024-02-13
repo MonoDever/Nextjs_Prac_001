@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 export function ValidatePassword(input) {
     //The string must contain at least 1 lowercase alphabetical character
     //The string must contain at least 1 uppercase alphabetical character
@@ -58,6 +60,16 @@ export function GetCookie(cookieName) {
 }
 
 export const PasswordInformation = () => {
+    useEffect(()=>{
+        const t = document.getElementById('password')
+        if(t){
+            t.removeEventListener('focusout',DisplayPasswordInformation)    
+            t.addEventListener('focusout',DisplayPasswordInformation)
+            t.removeEventListener('focusin',DisplayPasswordInformation)    
+            t.addEventListener('focusin',DisplayPasswordInformation)
+        }
+
+    },[])
 
     function DisplayPasswordInformation() {
         const co = document.getElementById("guideline");
@@ -74,9 +86,9 @@ export const PasswordInformation = () => {
 
     return (
         <div >
-            <i id="guidelineicon" class='icon_collapsible'
+            <i id="guidelineicon" className='icon_collapsible'
                 onClick={(e) => DisplayPasswordInformation()}>
-                    <i class="bi bi-question-circle-fill"></i>
+                    <i className="bi bi-question-circle-fill"></i>
                     <span className="span_passwordinformation"> Strong password guideline.</span></i>
             <div id="guideline" className="div_passwordinformation" >
                 <li className="label_passwordinfomation">The string must contain at least 1 lowercase alphabetical character</li>
@@ -87,4 +99,17 @@ export const PasswordInformation = () => {
             </div>
         </div>
     )
+}
+
+export function DisplayPasswordInformation() {
+    const co = document.getElementById("guideline");
+
+    co.classList.toggle("toggle");
+    if (co.style.maxHeight) {
+        co.style.maxHeight = null;
+        co.style.borderWidth = "0px";
+    } else {
+        co.style.maxHeight = co.scrollHeight + "px";
+        co.style.borderWidth = "1px";
+    }
 }

@@ -245,14 +245,15 @@ img {
 }
 
 .btn_option {
-    color: black;
+    color: grey;
 }
 
 .btn_option:hover {
+    color: #000000;
     text-shadow: 1px 1px gray;
-    background-color: lightgrey;
     border-radius: 5px;
     padding: 0px 5px;
+    transition: 2s;
 }
 
 .btn_option:hover .icon_lr {
@@ -261,4 +262,13 @@ img {
 
 .icon_lr {
     color: lightgray
+}
+
+.div-verifycode{
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 5px;
+}
+.input-verifycode{
+    width: 80px;
 }
