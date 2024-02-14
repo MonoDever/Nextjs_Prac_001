@@ -93,19 +93,20 @@ export default function UserComponent(props) {
 
             <div className="div-verifycode" style={{ display: onClickVerifyCode ? 'flex' : 'none' }}>
                 <div className="row" >
-                    <div className="col-7">
-                        <label>Please check email : </label>
+                    <div className="col-8">
+                        <label>Please check email :</label>
                     </div>
-                    <div className="col-5">
+                    <div className="col-4">
                         <input className="input-verifycode" placeholder="verifycode" maxLength={6} onChange={(e) => onBindingVerifyCode(e)} style={{ border: 'solid 1px black' }} value={memberState.userVerifyEmail.verifyCode} ></input>
                     </div>
                 </div>
                 <br></br>
+                <br></br>
             </div>
 
             <div style={{ display: memberState.alertMessage ? 'inline' : 'none' }}>
-                <i><i className="bi bi-dash-circle-fill" style={{ color: 'red' }}></i></i>
-                <span style={{ textDecoration: 'underline', color: 'red' }}>{memberState.alertMessage}</span>
+            <i className="bi bi-exclamation-triangle alert-text"> </i>
+                <span className="alert-text">{memberState.alertMessage}</span>
             </div>
 
             {/* end send mail */}
