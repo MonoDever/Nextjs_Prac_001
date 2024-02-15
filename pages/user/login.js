@@ -15,21 +15,39 @@ const login = () => {
     const { popupState, popupDispatch } = useContext(PopupContext)
     const router = useRouter();
 
-    const onLogon = async () => {
+    const openWaitingSign = () => {
         layoutDispatch({ type: 'SET_DISPLAY', payload: { display: true } })
-        const data = await UserLogin({ userId: '', username: memberState.userLogin.email, password: sha256(memberState.userLogin.password) })
-        if (data) {
-            await popupDispatch({ type: 'SET_DISPLAY', payload: { display: true, topic: 'แจ้งเตือน', body: 'เข้าสู่ระบบสำเร็จ', action: onClosePopup } })
-            localStorage.setItem('token', JSON.stringify(data.auth))
-        } else {
-            popupDispatch({ type: 'SET_DISPLAY', payload: { display: true, topic: 'แจ้งเตือน', body: 'เข้าสู่ระบบไม่สำเร็จ', action: onClosePopup } })
-        }
-        layoutDispatch({ type: 'SET_DISPLAY', payload: { display: false } })
+    }
 
+    const closeWaitingSign = () => {
+        layoutDispatch({ type: 'SET_DISPLAY', payload: { display: false } })
+    }
+
+    const onLogon = async () => {
+        try{
+            openWaitingSign();
+            const data = await UserLogin({ userId: '', username: memberState.userLogin.email, password: sha256(memberState.userLogin.password) })
+            if (data && data.result.status == true) {
+                await popupDispatch({ type: 'SET_DISPLAY', payload: { display: true, topic: 'แจ้งเตือน', body: 'เข้าสู่ระบบสำเร็จ', action: onClosePopupSuccess } })
+                localStorage.setItem('token', JSON.stringify(data.auth))
+            } else {
+                popupDispatch({ type: 'SET_DISPLAY', payload: { display: true, topic: 'แจ้งเตือน', body: 'เข้าสู่ระบบไม่สำเร็จ', action: onClosePopupUnsuccess } })
+            }
+        }catch(error){
+
+        }finally{
+            setTimeout(() => {
+                closeWaitingSign();
+            }, 1000);
+        }
+    }
+
+    const onClosePopupSuccess = () => {
+        popupDispatch({ type: 'SET_DISPLAY', payload: { display: false, topic: '', body: 'test', action: null } })
         router.push('/userinformation/userinfo')
     }
 
-    const onClosePopup = () => {
+    const onClosePopupUnsuccess = () => {
         popupDispatch({ type: 'SET_DISPLAY', payload: { display: false, topic: '', body: 'test', action: null } })
     }
 

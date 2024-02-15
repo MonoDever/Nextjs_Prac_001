@@ -7,7 +7,9 @@ export default function alertpopup(props) {
 
     return (
         <>
-            <div style={{ position: 'absolute', width: '100%', height: '100%', display: popupState.display == true ? 'inline' : 'none' }}>
+            <div style={{ 
+                height: '100%', width: '100%', position: 'absolute', opacity: '1', zIndex: '1'
+                , backgroundColor: 'rgba(0, 0, 0, 0.25)', top: '0',  display: popupState.display == true ? 'inline' : 'none' }}>
                 <div style={{
                     position: 'absolute', backgroundColor: 'white', boxShadow: '0px 4px 4px 0px gray',
                     border: 'black 1px solid', borderRadius: '10px',

@@ -1,7 +1,7 @@
 import { createContext } from "react"
 
 const initMemberState = {
-    userLogin: { email: '', password: '' },
+    userLogin: { email: '', password: '', confirmPassword: '' },
     userVerifyEmail: { verifyCode: '', countSentEmail: 0 },
     alertMessage: '',
     userStage: {
@@ -55,12 +55,16 @@ function memberReducer(state, action) {
                 return { ...state, userInfo: { ...state.userInfo, phone: action.payload.phone } }
             case 'SET_EMAIL_INFO':
                 return { ...state, userInfo: { ...state.userInfo, email: action.payload.email } }
+            case 'SET_DEFAULT_USERLOGIN':
+                return { ...state, userLogin: { email: '', password: '', confirmPassword: '' } }
+            case 'SET_DEFAULT_ALERTMESSAGE':
+                return { ...state, alertMessage: '' }
             default: return state;
         }
     } catch (err) {
 
     } finally {
-        console.log({memberReducer : state})
+        console.log({ memberReducer: state })
     }
 }
 
