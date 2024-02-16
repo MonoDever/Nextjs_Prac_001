@@ -52,10 +52,12 @@ const login = () => {
     }
 
     const gotoRegisterPage = () => {
+        memberDispatch({type: 'SET_DEFAULT_USERLOGIN'})
         router.push('/user/register')
     }
 
     const gotoForgotPasswordPage = () =>{
+        memberDispatch({ type: 'SET_DEFAULT_USERVERIFYEMAIL'})
         router.push('/user/verificationcode')
     }
 

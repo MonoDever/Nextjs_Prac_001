@@ -81,6 +81,7 @@ export default function register() {
 
     const onRegisterSuccess = async () => {
         memberDispatch({type:'SET_DEFAULT_ALERTMESSAGE'})
+        memberDispatch({type: 'SET_DEFAULT_USERLOGIN'})
         await gotoLoginPage()
         setTimeout(() => {
             onClosePopup()

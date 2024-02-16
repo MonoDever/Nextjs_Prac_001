@@ -59,6 +59,8 @@ function memberReducer(state, action) {
                 return { ...state, userLogin: { email: '', password: '', confirmPassword: '' } }
             case 'SET_DEFAULT_ALERTMESSAGE':
                 return { ...state, alertMessage: '' }
+            case 'SET_DEFAULT_USERVERIFYEMAIL':
+                return { ...state, userVerifyEmail: { verifyCode: '', countSentEmail: 0 }}
             default: return state;
         }
     } catch (err) {

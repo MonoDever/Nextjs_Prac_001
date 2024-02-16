@@ -94,7 +94,7 @@ export default function UserComponent(props) {
             <div className="div-verifycode" style={{ display: onClickVerifyCode ? 'flex' : 'none' }}>
                 <div className="row" >
                     <div className="col-8">
-                        <label>Please check email :</label>
+                        <label>Enter verifyCode :</label>
                     </div>
                     <div className="col-4">
                         <input className="input-verifycode" placeholder="verifycode" maxLength={6} onChange={(e) => onBindingVerifyCode(e)} style={{ border: 'solid 1px black' }} value={memberState.userVerifyEmail.verifyCode} ></input>
