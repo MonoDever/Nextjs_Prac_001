@@ -23,6 +23,13 @@ export default function UserComponent(props) {
         }
     }, [memberState.userVerifyEmail.verifyCode])
 
+    useEffect(() =>{
+        if(onClickForgotPassword){
+            document.getElementById('email').removeAttribute('disabled','')
+            document.getElementById('email').setAttribute('disabled','')
+        }
+    },[])
+
     const onBindingEmail = (e) => {
         const email = e.target.value;
         memberDispatch({ type: 'SET_EMAIL', payload: { email: email } })

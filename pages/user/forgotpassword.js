@@ -6,10 +6,21 @@ import { useRouter } from "next/router";
 import { ChangePassword } from "../../services/userservices/userservice";
 import { PopupContext } from "../../providers/popupcontext";
 import { sha256 } from "js-sha256";
+import { LayoutContext } from "../../providers/layoutcontext";
+import WaitingSignal from "../../components/layouts/waitingsignal"
 export default function forgotpassword() {
     const router = useRouter();
     const { memberState, memberDispatch } = useContext(MemberContext);
-    const { popupState,popupDispatch} = useContext(PopupContext)
+    const { popupState, popupDispatch } = useContext(PopupContext)
+    const { layoutState, layoutDispatch } = useContext(LayoutContext)
+
+    const openWaitingSign = () => {
+        layoutDispatch({ type: 'SET_DISPLAY', payload: { display: true } })
+    }
+
+    const closeWaitingSign = () => {
+        layoutDispatch({ type: 'SET_DISPLAY', payload: { display: false } })
+    }
 
     useEffect(() => {
         const verifyCode = memberState.userVerifyEmail.verifyCode
@@ -17,39 +28,45 @@ export default function forgotpassword() {
             alert('sorry! no entrance to forgot password page.')
             router.push('/user/login')
         }
-    })
+    }, [])
 
     const gotoLoginPage = () => {
         router.push('/user/login')
     }
 
     const onForgotpassword = async () => {
-        let user = memberState.userLogin
-        const validConfirmpassword = await CheckConfirmPassword(user.password, user.confirmPassword)
-        const validEmail = await ValidateEmail(user.email)
-        const validPassword = await ValidatePassword(user.password)
+        try {
+            openWaitingSign();
+            let user = memberState.userLogin
+            const validConfirmpassword = await CheckConfirmPassword(user.password, user.confirmPassword)
+            const validEmail = await ValidateEmail(user.email)
+            const validPassword = await ValidatePassword(user.password)
 
-        if (!validConfirmpassword || !validEmail || !validPassword) {
-            let message = ''
-            if (!validConfirmpassword) {
-                message = 'Passwords are not equal'
-            } else if (!validEmail) {
-                message = 'Email format is invalid'
-            } else if (!validPassword) {
-                message = 'Password format is invalid'
+            if (!validConfirmpassword || !validEmail || !validPassword) {
+                let message = ''
+                if (!validConfirmpassword) {
+                    message = 'Passwords are not equal'
+                } else if (!validEmail) {
+                    message = 'Email format is invalid'
+                } else if (!validPassword) {
+                    message = 'Password format is invalid'
+                }
+                memberDispatch({ type: 'SET_ALERTMESSAGE', payload: { alertMessage: message } })
+                return;
             }
-            memberDispatch({ type: 'SET_ALERTMESSAGE', payload: { alertMessage: message } })
-            return;
-        }
 
-        const data = await ChangePassword({ username: user.email, password: sha256(user.password) });
-        if(data && data.result == 'success'){
-            popupDispatch({ type: 'SET_DISPLAY', payload: { display: true, topic: 'Alert', body: 'เปลี่ยนรหัสผ่านสำเร็จ', action: onClosePopup } })
-            gotoLoginPage();
-        }else{
-            popupDispatch({ type: 'SET_DISPLAY', payload: { display: true, topic: 'Alert', body: 'กรุณาทำรายการอีกครัง', action: onClosePopup } })
+            const data = await ChangePassword({ username: user.email, password: sha256(user.password) });
+            if (data && data.status == true) {
+                popupDispatch({ type: 'SET_DISPLAY', payload: { display: true, topic: 'Alert', body: 'เปลี่ยนรหัสผ่านสำเร็จ', action: onClosePopup } })
+                gotoLoginPage();
+            } else {
+                popupDispatch({ type: 'SET_DISPLAY', payload: { display: true, topic: 'Alert', body: 'กรุณาทำรายการอีกครัง', action: onClosePopup } })
+            }
+        } catch (error) {
+            console.log(`onForgotpassword error : ${error.message}`)
+        } finally {
+            closeWaitingSign();
         }
-
     }
 
     const onClosePopup = () => {
@@ -57,19 +74,22 @@ export default function forgotpassword() {
     }
 
     return (
-        <div className="layout_member">
-            <div className="box_login">
-                <UserComponent
-                    topic='Forgot password'
-                    inputEmailDisplay='true'
-                    inputPasswordDisplay='true'
-                    inputPasswordConfirmDisplay='true'
-                    onGotoLoginPage={() => gotoLoginPage()}
-                    onClickForgotPassword={() => onForgotpassword()}
+        <>
+        <WaitingSignal></WaitingSignal>
+            <div className="layout_member">
+                <div className="box_login">
+                    <UserComponent
+                        topic='Forgot password'
+                        inputEmailDisplay='true'
+                        inputPasswordDisplay='true'
+                        inputPasswordConfirmDisplay='true'
+                        onGotoLoginPage={() => gotoLoginPage()}
+                        onClickForgotPassword={() => onForgotpassword()}
 
 
-                ></UserComponent>
+                    ></UserComponent>
+                </div>
             </div>
-        </div>
+        </>
     )
 }

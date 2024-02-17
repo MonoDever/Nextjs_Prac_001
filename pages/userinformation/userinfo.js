@@ -3,9 +3,19 @@ import Mainheader from "../../components/layouts/main/mainheader";
 import Mainnavbar from "../../components/layouts/main/mainnavbar";
 import { MemberContext } from "../../providers/membercontext";
 import { GetUserDirectory, UpdateUserDirectory } from "../../services/userservices/userservice";
+import { LayoutContext } from "../../providers/layoutcontext";
 
 export default function userinfo() {
     const { memberState, memberDispatch } = useContext(MemberContext);
+    const { layoutState, layoutDispatch } = useContext(LayoutContext);
+
+    const openWaitingSign = () => {
+        layoutDispatch({ type: 'SET_DISPLAY', payload: { display: true } })
+    }
+
+    const closeWaitingSign = () => {
+        layoutDispatch({ type: 'SET_DISPLAY', payload: { display: false } })
+    }
 
     useEffect(() => {
         onDisableInput()
@@ -48,22 +58,31 @@ export default function userinfo() {
     const onUpdateInfo = async () => {
         alert(JSON.stringify(memberState.userInfo))
         const data = await UpdateUserDirectory(memberState.userInfo);
-        
+
         alert(JSON.parse(JSON.stringify(data)))
     }
 
-    const ontestjson = async () =>{
-        console.log({test :{test:'test'}})
+    const ontestjson = async () => {
+        console.log({ test: { test: 'test' } })
     }
 
-    const onLoadData = async () =>{
-        const data = await GetUserDirectory(); 
-        if(data){
-            memberDispatch({ type: "SET_FIRSTNAME", payload: { firstname: data.firstname ?? '' } })
-            memberDispatch({ type: "SET_LASTNAME", payload: { lastname: data.lastname ?? '' } })
-            memberDispatch({ type: "SET_PHONE", payload: { phone: data.phone ?? '' } })
-            memberDispatch({ type: "SET_EMAIL_INFO", payload: { email: data.email ?? '' } })
+    const onLoadData = async () => {
+        openWaitingSign();
+        try{
+
+            const data = await GetUserDirectory();
+            if (data && data.result.status == true) {
+                memberDispatch({ type: "SET_FIRSTNAME", payload: { firstname: data.userDirectory.firstname ?? '' } })
+                memberDispatch({ type: "SET_LASTNAME", payload: { lastname: data.userDirectory.lastname ?? '' } })
+                memberDispatch({ type: "SET_PHONE", payload: { phone: data.userDirectory.phone ?? '' } })
+                memberDispatch({ type: "SET_EMAIL_INFO", payload: { email: data.userDirectory.email ?? '' } })
+            }
+        }catch(error){
+            console.log(error)
+        }finally{
+            closeWaitingSign()
         }
+            
     }
 
     return (
