@@ -45,7 +45,7 @@ export default function verificationcode() {
             }
 
             let data = await ValidateVerifyCode({ email: user.email, verifyCode: verifycode })
-            if (data && data.status == true) {
+            if (data && data.result.status == true) {
                 router.push('/user/forgotpassword')
             } else {
                 memberDispatch({ type: 'SET_VERIFYCODE', payload: { verifycode: '' } })
@@ -73,7 +73,7 @@ export default function verificationcode() {
             }
 
             let data = await SendMailForVerifyCode({ email: user.email });
-            if (data && data.status == true) {
+            if (data && data.result.status == true) {
                 memberDispatch({ type: 'SET_SENTMAIL', payload: { countSentEmail: memberState.userVerifyEmail.countSentEmail + 1 } })
                 popupDispatch({ type: 'SET_DISPLAY', payload: { display: true, topic: 'Information', body: 'กรุณาตรวจสอบ Mail box ของท่าน', action: onClosePopup } })
             }

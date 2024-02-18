@@ -50,26 +50,23 @@ export default function register() {
                 params.password = sha256(user.password);
 
                 const data = await UserSignup(params);
-                if (data && data.status == true) {
+                if (data && data.result.status == true) {
                     popupDispatch({ type: 'SET_DISPLAY', payload: { display: true, topic: 'Alert', body: 'Register is success', action: onRegisterSuccess } })
                 } else {
-                    memberDispatch({ type: 'SET_ALERTMESSAGE', payload: { alertMessage: `l,สมัครสมาชิกไม่สำเร็จ \r\n${data?.statusCode ?? ''}` } })
+                    memberDispatch({ type: 'SET_ALERTMESSAGE', payload: { alertMessage: `สมัครสมาชิกไม่สำเร็จ \r\n${data?.statusCode ?? ''}` } })
                 }
                 setTimeout(() => {
                     closeWaitingSign()
-
                 }, 1000);
             }
 
         } catch (error) {
             setTimeout(() => {
                 closeWaitingSign()
-
             }, 1000);
         } finally {
             setTimeout(() => {
                 closeWaitingSign()
-
             }, 1000);
         }
 

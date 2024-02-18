@@ -1,6 +1,7 @@
+require('dotenv').config();
 import { httpClient } from '../axiosconfig.js/httpclient'
 const axios = require('axios').default
-const urlPath = "http://localhost:3005/"
+const urlPath = process.env.USER_SERVICE_PATH;
 export const UserLogin = async (params) => {
     const subPath = 'auth/login'
     // const response = await fetch(`${urlPath+subPath}`,{

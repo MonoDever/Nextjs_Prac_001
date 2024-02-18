@@ -56,7 +56,7 @@ export default function forgotpassword() {
             }
 
             const data = await ChangePassword({ username: user.email, password: sha256(user.password) });
-            if (data && data.status == true) {
+            if (data && data.result.status == true) {
                 popupDispatch({ type: 'SET_DISPLAY', payload: { display: true, topic: 'Alert', body: 'เปลี่ยนรหัสผ่านสำเร็จ', action: onClosePopup } })
                 gotoLoginPage();
             } else {
