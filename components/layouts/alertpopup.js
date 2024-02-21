@@ -7,33 +7,23 @@ export default function alertpopup(props) {
 
     return (
         <>
-            <div style={{ 
-                height: '100%', width: '100%', position: 'absolute', opacity: '1', zIndex: '1'
-                , backgroundColor: 'rgba(0, 0, 0, 0.25)', top: '0',  display: popupState.display == true ? 'inline' : 'none' }}>
-                <div style={{
-                    position: 'absolute', backgroundColor: 'white', boxShadow: '0px 4px 4px 0px gray',
-                    border: 'black 1px solid', borderRadius: '10px',
-                    width: '500px', height: '300px', top: '50%', left: '50%', transform: 'translate(-50%,-50%)'
-                }}>
-                    <div className="row" style={{ height: '15%', backgroundColor: 'lightblue', margin: '0px', borderRadius: '10px 10px 0px 0px' }}>
-                        <div>
-                            <span style={{ fontSize: '16px', fontWeight: 'bold', verticalAlign: '-webkit-baseline-middle' }}>
-                                <i className="bi bi-exclamation-triangle-fill" style={{ color: 'yellowgreen' }}></i>{popupState.topic}
-                            </span>
+            <div className="alert-div-background" style={{ display: popupState.display == true ? 'inline' : 'none' }}>
+                <div className="alert-div-box alert-div-box-sizing">
+                    <div className="alert-topic row" >
+                        <div className="alert-sub-topic">
+                            <i className="bi bi-exclamation-triangle-fill" style={{ color: 'yellowgreen' }}></i>
+                            <label className="">{` ${popupState.topic}`}</label>
                         </div>
                     </div>
-                    <div className="row" style={{ height: '65%' }}>
-                        <div style={{ alignItems:'center', display:'flex',justifyContent:'center' }}>
-                            <span style={{ verticalAlign: '-webkit-baseline-middle' }}>{popupState.body}</span>
+                    <div className="row alert-body">
+                        <div className="alert-sub-body">
+                            <span > {`${popupState.body} test`}</span>
                         </div>
                     </div>
-                    <div className="row" style={{ height: '20%' }}>
-                        <div style={{ textAlign: 'center' }}>
-                            <button type="button"
-                                style={{
-                                    border: 'lightgray 2px solid', borderRadius: '10px', boxShadow: '0px 4px 4px 0px gray',
-                                    width: '90px', height: '40px'
-                                }} onClick={() => popupState.action()}>OK</button>
+                    <div className="row alert-bottom">
+                        <div className="alert-sub-bottom">
+                            <button type="button" className="alert-button"
+                                onClick={() => popupState.action()}>OK</button>
                         </div>
                     </div>
                 </div>
