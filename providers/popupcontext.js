@@ -1,7 +1,7 @@
 import { createContext,} from "react";
 
 const initPopupState = {
-    display:true,
+    display:false,
     topic:'test',
     body:'',
     action:null

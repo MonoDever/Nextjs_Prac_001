@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import Mainheader from "../../components/layouts/main/mainheader";
 import Mainnavbar from "../../components/layouts/main/mainnavbar";
+import MainTopbar from "../../components/layouts/main/maintopbar";
 import { MemberContext } from "../../providers/membercontext";
 import { GetUserDirectory, UpdateUserDirectory } from "../../services/userservices/userservice";
 import { LayoutContext } from "../../providers/layoutcontext";
@@ -87,7 +88,8 @@ export default function userinfo() {
 
     return (
         <>
-            <Mainheader />
+            <MainTopbar></MainTopbar>
+            {/* <Mainheader /> */}
             <Mainnavbar />
             <div className="main-content-info">
                 <div className='topic-content-info'>

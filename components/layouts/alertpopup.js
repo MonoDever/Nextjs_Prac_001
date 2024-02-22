@@ -17,7 +17,7 @@ export default function alertpopup(props) {
                     </div>
                     <div className="row alert-body">
                         <div className="alert-sub-body">
-                            <span > {`${popupState.body} test`}</span>
+                            <span > {`${popupState.body}`}</span>
                         </div>
                     </div>
                     <div className="row alert-bottom">
