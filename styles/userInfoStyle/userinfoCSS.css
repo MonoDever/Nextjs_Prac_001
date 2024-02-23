@@ -1,13 +1,14 @@
 .main-content-info {
     background-color: white;
-    margin-left: 16%;
+    /* margin-left: 16%; */
     margin-top: 10px;
     margin-bottom: 10px;
     border: 1px solid lightgray;
     border-radius: 3px;
-    width: 82%;
+    /* width: 82%; */
     height: 100%;
     padding: 10px;
+    transition: 1s;
 }
 
 .grid-content-info {

@@ -14,51 +14,7 @@
 
 /*#endregion fontsize*/
 
-/*#region new topbar*/
-
-.main-topbar {
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: space-between;
-    background-color: #333;
-}
-
-@media screen and (min-width: 560px) {
-    .main-topbar {
-        flex-direction: unset;
-        justify-content: space-between;
-    }
-}
-
-.topbar-ul {
-    list-style-type: none;
-    margin: 0px;
-    padding: 5px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-}
-
-.topbar-ul a {
-    display: block;
-    text-decoration: none;
-    color: white;
-    text-align: center;
-    padding: 5px 14px;
-}
-
-.topbar-ul a:hover {
-    background-color: #4a4a4a;
-    transition: 2s;
-}
-
-.topbar-ul-username {
-    color: lightblue;
-}
-
-/*#endregion new topbar*/
-
-/* topbar */
+/*#region topbar */
 
 .top-header {
     background-color: darkslategray;
@@ -129,8 +85,10 @@
 .sub-menu:hover {
     background-color: #ededed;
 }
+/*#endregion topbar */
 
-/* appNav */
+
+/*#region appNav */
 .appNav {
     position: fixed;
     background-color: white;
@@ -156,7 +114,6 @@
 
 .flex-with {
     width: 50%;
-    ;
 }
 
 .appNav-img-side-bar {
@@ -195,3 +152,129 @@
 .manu-btn {
     display: flex;
 }
+
+/*#endregion appNav */
+
+/*#region new topbar*/
+
+.main-topbar {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    background-color: #333;
+    position: -webkit-sticky;
+    position: sticky;
+    top:0;
+}
+
+@media screen and (min-width: 560px) {
+    .main-topbar {
+        flex-direction: unset;
+        justify-content: space-between;
+    }
+}
+
+.topbar-ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 5px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.topbar-ul a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    padding: 5px 14px;
+}
+
+.topbar-ul a:hover {
+    background-color: #4a4a4a;
+    transition: 2s;
+}
+
+.topbar-ul-username {
+    color: lightblue;
+}
+
+/*#endregion new topbar*/
+
+
+.main-content{
+    transition:1s;
+    margin-left: 200px;
+    padding: 10px;
+    overflow-x: hidden;
+}
+
+
+/* #region new sidebar */
+
+.main-sidebar{
+    width: 200px;
+    display: inline;
+    background-color: #333;
+    height: 100dvh;
+    transition: 1s;
+    position: fixed;
+
+}
+
+.sidebar-opencloseNav-div{
+    text-align: end;
+    padding-right: 10px;
+}
+
+.sidebar-openNav-btn{
+    color: #fff;
+    font-size: 1.5rem;
+    display: none;
+}
+
+.sidebar-closeNav-btn{
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.sidebar-grid{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.sidebar-banner-div{
+    display: flex;
+    color: green;
+    align-items: end;
+    justify-content: end;
+    font-weight: 700;
+}
+@media screen and (max-width: 560px) {
+    .main-sidebar{
+        width: 50px !important;
+    }
+
+    .sidebar-banner-div{
+        display: none !important;
+    }
+
+    .sidebar-openNav-btn{
+        display: inline !important;
+    }
+
+    .sidebar-closeNav-btn{
+        display: none !important;
+    }
+
+    .main-content{
+        margin-left: 50px !important;
+    }
+    
+}
+
+
+
+
+/* #endregion new sidebar */
